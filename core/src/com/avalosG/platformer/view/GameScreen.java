@@ -16,10 +16,10 @@ public class GameScreen implements Screen{
         map = new TmxMapLoader().load("map/level01.tmx"); // loading the map
         renderer = new OrthogonalTiledMapRenderer(map, 1/70f);  // this states that the tiles are 70px large
 
-        float width = Gdx.graphics.getWidth();
+        float width = Gdx.graphics.getWidth(); // we are obtaining the height and width of the window where our game will pop up
         float height = Gdx.graphics.getHeight();
 
-        camera = new OrthographicCamera(14f, 14f * (height / width)); // we changed the camera angle and multiplied it by the height and width 
+        camera = new OrthographicCamera(14f, 14f * (height / width)); // we changed the camera size and multiplied it by the height and width
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0); // sets the camera position to center on the map
 
 
