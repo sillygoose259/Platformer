@@ -1,5 +1,6 @@
 package com.avalosG.platformer.view;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -14,8 +15,14 @@ public class GameScreen implements Screen{
     public GameScreen() {
         map = new TmxMapLoader().load("map/level01.tmx"); // loading the map
         renderer = new OrthogonalTiledMapRenderer(map, 1/70f);  // this states that the tiles are 70px large
-        camera = new OrthographicCamera(14f, 14f);
+
+        float width = Gdx.graphics.getWidth();
+        float height = Gdx.graphics.getHeight();
+
+        camera = new OrthographicCamera(14f, 14f * (height / width)); // we changed the camera angle and multiplied it by the height and width 
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0); // sets the camera position to center on the map
+
+
     }
 
     @Override
