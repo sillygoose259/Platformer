@@ -2,6 +2,7 @@ package com.avalosG.platformer.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -27,6 +28,8 @@ public class GameScreen implements Screen{
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClearColor(0.22f, 0.63f, 0.84f, 1f); // sets our color with our chosen color variables
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // clearing the screen using the color from the previous line
         camera.update();  // updating the camera
         renderer.setView(camera);
         renderer.render(); // rendering the renderer
@@ -35,7 +38,9 @@ public class GameScreen implements Screen{
 
     @Override
     public void resize(int width, int height) {
-
+        camera.viewportWidth = 14f; // resized our width but is the same
+        camera.viewportHeight = 14f * height/ width; // the same size as our width but is being multiplied by height divided by width
+        camera.update();
     }
 
     @Override
