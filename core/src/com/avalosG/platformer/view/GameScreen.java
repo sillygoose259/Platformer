@@ -1,9 +1,12 @@
 package com.avalosG.platformer.view;
 
+import com.avalosG.platformer.model.Player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -12,6 +15,9 @@ public class GameScreen implements Screen{
     public TiledMap map;
     public OrthogonalTiledMapRenderer renderer;
     public OrthographicCamera camera;
+
+    public SpriteBatch spriteBatch;
+    public Player player;
 
     public GameScreen() {
         map = new TmxMapLoader().load("map/level01.tmx"); // loading the map
@@ -23,6 +29,9 @@ public class GameScreen implements Screen{
         camera = new OrthographicCamera(14f, 14f * (height / width)); // we changed the camera size and multiplied it by the height and width
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0); // sets the camera position to center on the map
 
+        spriteBatch =  new SpriteBatch();
+        player =  new Player();
+
 
     }
 
@@ -33,6 +42,10 @@ public class GameScreen implements Screen{
         camera.update();  // updating the camera
         renderer.setView(camera);
         renderer.render(); // rendering the renderer
+
+        spriteBatch.begin();
+        player.draw(spriteBatch);
+        spriteBatch.end();
 
     }
 
