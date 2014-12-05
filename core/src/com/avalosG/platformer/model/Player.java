@@ -13,7 +13,7 @@ public class Player {
     public TextureRegion[] spriteFrames;
 
     public Player() {
-        position = new Vector2(0, 0); // initializing the position to the origin (0, 0)
+        position = new Vector2(07, 3); // initializing the position to the origin (0, 0)
         spriteSheet = new Texture(Gdx.files.internal("img/aliens.png")); //accessing the image
 
         TextureRegion[][] spriteSheetFrames = TextureRegion.split(spriteSheet, 70, 100); //splits our spriteSheet according to height and width of our region and puts them in a two-dimensional array
@@ -38,16 +38,12 @@ public class Player {
     }
 
     public void draw(Batch spriteBatch) {    // the function doesn't return anything
-        spriteBatch.draw(spriteFrames[7], 0, 0, 70,100);
+        spriteBatch.draw(spriteFrames[7], position.x, position.y, 70 * (1 / 70f), 100 * (1 / 70f));
     }
-
-
-
-
 
 
     public void update(float deltatime) {
+        position.x -= deltatime; // limits how fast our player moves left or right
 
     }
-
 }

@@ -16,7 +16,7 @@ public class GameScreen implements Screen{
     public OrthogonalTiledMapRenderer renderer;
     public OrthographicCamera camera;
 
-    public SpriteBatch spriteBatch;
+    public Batch spriteBatch;
     public Player player;
 
     public GameScreen() {
@@ -29,7 +29,7 @@ public class GameScreen implements Screen{
         camera = new OrthographicCamera(14f, 14f * (height / width)); // we changed the camera size and multiplied it by the height and width
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0); // sets the camera position to center on the map
 
-        spriteBatch =  new SpriteBatch();
+        spriteBatch =  renderer.getSpriteBatch(); // accessing the sprite batch associated with our level map and storing them in our sprite batch variable
         player =  new Player();
 
 
@@ -39,9 +39,12 @@ public class GameScreen implements Screen{
     public void render(float delta) {
         Gdx.gl.glClearColor(0.22f, 0.63f, 0.84f, 1f); // sets our color with our chosen color variables
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // clearing the screen using the color from the previous line
+
         camera.update();  // updating the camera
         renderer.setView(camera);
         renderer.render(); // rendering the renderer
+
+        player.update(delta); // updating our player using delta
 
         spriteBatch.begin();
         player.draw(spriteBatch);
