@@ -14,18 +14,18 @@ import java.util.HashMap;
 
 public class Player {
     public Vector2 position; // a point for x and y positioning
-    public int width;
-    public int height;
+    public float width;
+    public float height;
     public Spritesheet spriteSheet;
     public String currentAnimation;
 
     private float stateTime;
     private HashMap<String, Animation> animations;
 
-    public Player() {
+    public Player(int width, int height) {
         position = new Vector2(7, 3); // initializing the position to the origin (0, 0)
-        width = 70;
-        height = 100;
+        this.width = width * (1/70f);
+        this.height = height * (1/70f);
         spriteSheet = new Spritesheet("img/aliens.png", width, height);
         animations = new HashMap<String, Animation>();
 
@@ -37,7 +37,7 @@ public class Player {
         playerBody.setUserData(this); // all our information will be attached to our body
 
         PolygonShape rectangleShape =  new PolygonShape();
-        rectangleShape.setAsBox(width / 2f, height / 2f, new Vector2(width/ 2f, height /2f), 0f); // setting the height and width of the box
+        rectangleShape.setAsBox(this.width / 2f, this.height / 2f, new Vector2(this.width/ 2f, this.height /2f), 0f); // setting the height and width of the box
 
         FixtureDef fixtureDefinition = new FixtureDef(); // creating the properties of our fixture
         fixtureDefinition.shape = rectangleShape; // shapeing the fixture
@@ -70,7 +70,7 @@ public class Player {
     }
 
     public void draw(Batch spriteBatch) {    // the function doesn't return anything
-        spriteBatch.draw(animations.get(currentAnimation).getKeyFrame(stateTime ,true), position.x, position.y, 70 * (1/70f), 100 * (1/70f));
+        spriteBatch.draw(animations.get(currentAnimation).getKeyFrame(stateTime ,true), position.x, position.y,width , height);
     }
 
 

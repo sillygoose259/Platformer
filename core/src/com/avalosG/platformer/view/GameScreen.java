@@ -38,7 +38,7 @@ public class GameScreen implements Screen{
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0); // sets the camera position to center on the map
 
         spriteBatch =  renderer.getSpriteBatch(); // accessing the sprite batch associated with our level map and storing them in our sprite batch variable
-        player =  new Player();
+        player =  new Player(70, 100);
 
 
     }
@@ -53,6 +53,8 @@ public class GameScreen implements Screen{
         renderer.render(); // rendering the renderer
 
         player.update(delta); // updating our player using delta
+
+        gameWorld.step(1/60f, 1, 1);
 
         spriteBatch.begin();
         player.draw(spriteBatch);
