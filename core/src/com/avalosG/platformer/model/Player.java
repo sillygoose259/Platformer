@@ -1,5 +1,6 @@
 package com.avalosG.platformer.model;
 
+import com.avalosG.platformer.controller.LevelController;
 import com.avalosG.platformer.view.GameScreen;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -33,7 +34,7 @@ public class Player {
         bodyDefinition.type = BodyDef.BodyType.DynamicBody; // the type of the body dynamic
         bodyDefinition.position.set(position); // where the body will be created
 
-        Body playerBody = GameScreen.gameWorld.createBody(bodyDefinition); // attaching in the gameWorld
+        Body playerBody = LevelController.gameWorld.createBody(bodyDefinition); // attaching in the gameWorld
         playerBody.setUserData(this); // all our information will be attached to our body
 
         PolygonShape rectangleShape =  new PolygonShape();
