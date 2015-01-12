@@ -2,6 +2,7 @@ package com.avalosG.platformer.view;
 
 import com.avalosG.platformer.controller.CameraController;
 import com.avalosG.platformer.controller.LevelController;
+import com.avalosG.platformer.controller.PlayerController;
 import com.avalosG.platformer.model.Player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -20,24 +21,11 @@ public class GameScreen implements Screen{
 
 
 
-
-    public Player player;
-
-
-
-
     public GameScreen() {
 
         LevelController.initializeController();
         CameraController.initializeController();
-
-
-
-
-
-
-        player =  new Player(70, 100);
-
+        PlayerController.initializeController();
 
     }
 
@@ -49,9 +37,7 @@ public class GameScreen implements Screen{
 
         LevelController.update(delta);
         CameraController.update();
-
-
-        player.update(delta); // updating our player using delta
+        PlayerController.update(delta);
         LevelController.draw();
 
 
@@ -63,7 +49,7 @@ public class GameScreen implements Screen{
 
     @Override
     public void resize(int width, int height) {
-        CameraController.resize(width, height);
+
     }
 
     @Override
