@@ -1,0 +1,37 @@
+package com.avalosG.platformer.model;
+
+import com.avalosG.platformer.controller.LevelController;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Vector2;
+
+import java.util.HashMap;
+
+public class Sprite {
+
+    public Vector2 position; // a point for x and y positioning
+    public float width;
+    public float height;
+    public Spritesheet spriteSheet;
+    public String currentAnimation;
+
+    protected float stateTime;
+    protected HashMap<String, Animation> animations;
+    public Sprite(Vector2 position, int width, int height) {
+        this.position = position; // initializing the position to the origin (0, 0)
+        this.width = width * (LevelController.UNIT_SCALE);
+        this.height = height * (LevelController.UNIT_SCALE);
+        spriteSheet = new Spritesheet("img/aliens.png", width, height);
+        animations = new HashMap<String, Animation>();
+        stateTime = 0f;
+    }
+    public void draw(Batch spriteBatch) {    // the function doesn't return anything
+        spriteBatch.draw(animations.get(currentAnimation).getKeyFrame(stateTime ,true), position.x, position.y,width , height);
+    }
+
+
+    public void update(float deltaTime) {
+        stateTime += deltaTime;
+
+    }
+}

@@ -2,6 +2,7 @@ package com.avalosG.platformer.controller;
 
 import com.avalosG.platformer.model.Player;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Vector2;
 
 public class PlayerController {
 
@@ -9,7 +10,7 @@ public class PlayerController {
 
     public static void initializeController() {
 
-        player =  new Player(70, 100);
+        player =  new Player(new Vector2(7, 3), 70, 100);
 
     }
 
