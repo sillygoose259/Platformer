@@ -23,8 +23,8 @@ public class Player extends Sprite{
         bodyDefinition.type = BodyDef.BodyType.DynamicBody; // the type of the body dynamic
         bodyDefinition.position.set(position); // where the body will be created
 
-        Body playerBody = LevelController.gameWorld.createBody(bodyDefinition); // attaching in the gameWorld
-        playerBody.setUserData(this); // all our information will be attached to our body
+        physicsBody = LevelController.gameWorld.createBody(bodyDefinition); // attaching in the gameWorld
+        physicsBody.setUserData(this); // all our information will be attached to our body
 
         PolygonShape rectangleShape =  new PolygonShape();
         rectangleShape.setAsBox(this.width / 2f, this.height / 2f, new Vector2(this.width/ 2f, this.height /2f), 0f); // setting the height and width of the box
@@ -32,7 +32,7 @@ public class Player extends Sprite{
         FixtureDef fixtureDefinition = new FixtureDef(); // creating the properties of our fixture
         fixtureDefinition.shape = rectangleShape; // shapeing the fixture
 
-        playerBody.createFixture(fixtureDefinition); // applying the fixture to our player body
+        physicsBody.createFixture(fixtureDefinition); // applying the fixture to our player body
         rectangleShape.dispose(); // removeing the origional rectangleShape
 
 

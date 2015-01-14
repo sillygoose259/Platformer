@@ -2,6 +2,7 @@ package com.avalosG.platformer.controller;
 
 import com.avalosG.platformer.model.Level;
 import com.avalosG.platformer.model.Player;
+import com.avalosG.platformer.model.Sprite;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -27,7 +28,7 @@ public class LevelController {
         level = new Level("map/level01.tmx");
         renderer = new OrthogonalTiledMapRenderer(level.map, UNIT_SCALE);  // this states that the tiles are 70px large
 
-        gameWorld = new World(new Vector2(0, -10), true); // the gravity for our player that makes it fall down based on earth's gravity
+        gameWorld = new World(new Vector2(0, 0), true); // the gravity for our player that makes it fall down based on earth's gravity
         worldBodies = new Array<Body>();
         debugRenderer = new Box2DDebugRenderer();
 
@@ -61,8 +62,8 @@ public class LevelController {
 
 
        for(Body body : worldBodies) {
-            Player playerBody = (Player)body.getUserData(); // casting the Player from a different variable
-           playerBody.position = body.getPosition();
+            Sprite spriteBody = (Player)body.getUserData(); // casting the Player from a different variable
+           spriteBody.position = body.getPosition();
         }
     }
 
