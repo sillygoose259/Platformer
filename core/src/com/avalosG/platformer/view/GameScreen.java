@@ -1,6 +1,7 @@
 package com.avalosG.platformer.view;
 
 import com.avalosG.platformer.controller.CameraController;
+import com.avalosG.platformer.controller.InputController;
 import com.avalosG.platformer.controller.LevelController;
 import com.avalosG.platformer.controller.PlayerController;
 import com.avalosG.platformer.model.Player;
@@ -26,6 +27,7 @@ public class GameScreen implements Screen{
         LevelController.initializeController();
         CameraController.initializeController();
         PlayerController.initializeController();
+        InputController.initializeController();
 
     }
 

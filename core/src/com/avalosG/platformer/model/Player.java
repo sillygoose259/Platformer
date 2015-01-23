@@ -16,11 +16,11 @@ import java.util.HashMap;
 public class Player extends Sprite{
 
 
-    public Player(Vector2 position, int width, int height) {
-        super(position, width, height);
+    public Player(Vector2 position, int width, int height, String sheetPath) {
+        super(position, width, height, sheetPath);
 
         BodyDef bodyDefinition = new BodyDef(); // creating the body
-        bodyDefinition.type = BodyDef.BodyType.DynamicBody; // the type of the body dynamic
+        bodyDefinition.type = BodyDef.BodyType.DynamicBody; // the type of the body dynamic can apply impulses
         bodyDefinition.position.set(position); // where the body will be created
 
         physicsBody = LevelController.gameWorld.createBody(bodyDefinition); // attaching in the gameWorld

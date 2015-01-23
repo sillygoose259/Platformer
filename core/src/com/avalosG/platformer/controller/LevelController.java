@@ -1,9 +1,12 @@
 package com.avalosG.platformer.controller;
 
+import com.avalosG.platformer.model.Bodies;
 import com.avalosG.platformer.model.Level;
 import com.avalosG.platformer.model.Player;
 import com.avalosG.platformer.model.Sprite;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -28,18 +31,23 @@ public class LevelController {
         level = new Level("map/level01.tmx");
         renderer = new OrthogonalTiledMapRenderer(level.map, UNIT_SCALE);  // this states that the tiles are 70px large
 
-        gameWorld = new World(new Vector2(0, 0), true); // the gravity for our player that makes it fall down based on earth's gravity
+        gameWorld = new World(new Vector2(0, -10), true); // the gravity for our player that makes it fall down based on earth's gravity
         worldBodies = new Array<Body>();
         debugRenderer = new Box2DDebugRenderer();
 
         spriteBatch =  renderer.getSpriteBatch(); // accessing the sprite batch associated with our level map and storing them in our sprite batch variable
+        createLevelBodies();
 
     }
 
     public static void draw() {
+        spriteBatch.setProjectionMatrix(CameraController.inputCamera.combined);
         spriteBatch.begin();
         PlayerController.draw(spriteBatch);
         spriteBatch.end();
+
+        spriteBatch.setProjectionMatrix(CameraController.inputCamera.combined);
+        InputController.draw(spriteBatch);
 
         debugRenderer.render(gameWorld, CameraController.camera.combined); // display the shapes to the exact size it needs to be
 
@@ -63,10 +71,18 @@ public class LevelController {
 
        for(Body body : worldBodies) {
             Sprite spriteBody = (Player)body.getUserData(); // casting the Player from a different variable
-           spriteBody.position = body.getPosition();
+           if(spriteBody != null) {
+               spriteBody.position = body.getPosition();
+           }
         }
     }
 
 
+    private static void createLevelBodies() {
+        MapObjects mapObjects = level.getLayerObjects(level.getMapLayer("collision"));
 
+        for(MapObject mapObject : mapObjects) {
+            Bodies.createBody(mapObject);
+        }
+    }
 }
