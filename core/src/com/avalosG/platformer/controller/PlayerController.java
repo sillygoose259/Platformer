@@ -12,10 +12,14 @@ public class PlayerController {
 
     private static final float VELOCITY = 1f;
     private static final float MAX_VELOCITY = 5f;
+    public static String movementAction;
+    public static String specialAction;
 
     public static void initializeController() {
 
         player =  new Player(new Vector2(7, 3), 70, 100, "img/aliens.png");
+        movementAction = "";
+        specialAction = "";
 
     }
 
@@ -52,8 +56,11 @@ public class PlayerController {
             player.physicsBody.applyLinearImpulse(VELOCITY, 1f, position.x, position.y, true);
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+        if(movementAction.equalsIgnoreCase("right")) {
             player.physicsBody.applyLinearImpulse(VELOCITY, -1f, position.x, position.y, true);
+        }
+        else if(movementAction.equalsIgnoreCase("left")) {
+
         }
     }
 }

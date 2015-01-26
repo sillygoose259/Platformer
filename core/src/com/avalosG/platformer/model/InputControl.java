@@ -3,6 +3,7 @@ package com.avalosG.platformer.model;
 import com.avalosG.platformer.controller.LevelController;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class InputControl {
@@ -23,5 +24,9 @@ public class InputControl {
 
     public void draw(Batch spriteBatch) {
         spriteBatch.draw(textureRegion, position.x, position.y, height * LevelController.UNIT_SCALE, width * LevelController.UNIT_SCALE);
+    }
+
+    public Rectangle getBoundingBox() {
+        return new Rectangle(position.x, position.y, width, height);
     }
 }

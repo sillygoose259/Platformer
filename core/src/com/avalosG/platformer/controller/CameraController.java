@@ -3,10 +3,15 @@ package com.avalosG.platformer.controller;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
+import java.util.logging.Level;
+
 public class CameraController {
 
     public static OrthographicCamera camera;
     public static OrthographicCamera inputCamera;
+
+    public static float widthScale;
+    public static float heightScale;
 
 
 
@@ -39,5 +44,11 @@ public class CameraController {
         inputCamera.viewportHeight = 14f * height/width;
         inputCamera.position.set(inputCamera.viewportWidth / 2f, inputCamera.viewportHeight / 2f, 0);
         inputCamera.update();
+
+        widthScale = width / inputCamera.viewportWidth * LevelController.UNIT_SCALE;
+        heightScale = height / inputCamera.viewportHeight * LevelController.UNIT_SCALE;
+
+        // widthScale = Gdx.graphics.getWidth();
+        // heightScale = Gdx.graphics.getHeight();
     }
 }
