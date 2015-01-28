@@ -17,7 +17,7 @@ public class PlayerController {
 
     public static void initializeController() {
 
-        player =  new Player(new Vector2(7, 3), 70, 100, "img/aliens.png");
+        player =  new Player(new Vector2(7, 7), 70, 100, "img/aliens.png");
         movementAction = "";
         specialAction = "";
 
@@ -44,23 +44,11 @@ public class PlayerController {
             player.physicsBody.setLinearVelocity(velocity.x, velocity.y);
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+        if(movementAction.equalsIgnoreCase("right")) {
             player.physicsBody.applyLinearImpulse(VELOCITY, 0f, position.x, position.y, true);
         }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            player.physicsBody.applyLinearImpulse(-VELOCITY, 0f, position.x, position.y, true);
-        }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            player.physicsBody.applyLinearImpulse(VELOCITY, 1f, position.x, position.y, true);
-        }
-
-        if(movementAction.equalsIgnoreCase("right")) {
-            player.physicsBody.applyLinearImpulse(VELOCITY, -1f, position.x, position.y, true);
-        }
         else if(movementAction.equalsIgnoreCase("left")) {
-
+            player.physicsBody.applyLinearImpulse(-VELOCITY, 0f, position.x, position.y, true);
         }
     }
 }

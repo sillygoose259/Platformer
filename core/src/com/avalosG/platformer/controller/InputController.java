@@ -41,7 +41,7 @@ public class InputController {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 if(left.getBoundingBox().contains(screenX, Gdx.graphics.getHeight() - screenY)) {
-                    PlayerController.movementAction = "right";
+                    PlayerController.movementAction = "left";
                 }
                 return true;
             }
