@@ -21,18 +21,17 @@
   </data>
  </layer>
  <objectgroup color="#0000ff" name="collision" width="20" height="10">
-  <object name="ground " type="solid" x="2" y="138" width="66" height="350"/>
-  <object name="ground" type="solid" x="72" y="212" width="68" height="278"/>
-  <object name="ground" type="solid" x="630" y="352" width="70" height="138"/>
-  <object name="ground " type="soid" x="560" y="422" width="70" height="70"/>
-  <object name="ground" type="solid" x="0" y="632" width="350" height="68"/>
-  <object name="ground" type="solid" x="840" y="140" width="488" height="68"/>
-  <object name="ground " type="solid" x="348" y="682" width="982" height="18"/>
-  <object name="ground" type="solid" x="702" y="278" width="68" height="210"/>
-  <object name="ground" type="solid" x="348" y="492" width="278" height="40"/>
-  <object name="ground" type="solid" x="282" y="418" width="66" height="108"/>
-  <object name="ground " type="solid" x="212" y="350" width="70" height="136"/>
-  <object name="ground" type="solid" x="138" y="276" width="68" height="210"/>
-  <object name="ground" type="solid" x="772" y="210" width="68" height="278"/>
+  <object x="0" y="140">
+   <polyline points="0,0 66,2 344,280 348,348 560,350 558,276 836,0 1324,0 1330,70 840,72 842,348 632,350 630,390 278,394 280,350 -2,348 0,556 1396,558 1402,2"/>
+  </object>
+  <object x="1326" y="678">
+   <polyline points="0,0 -972,0 -978,-46 -1328,-48"/>
+  </object>
+  <object x="-2" y="0">
+   <polyline points="0,0 0,140"/>
+  </object>
+  <object x="1400" y="2">
+   <polyline points="0,0 4,140"/>
+  </object>
  </objectgroup>
 </map>
