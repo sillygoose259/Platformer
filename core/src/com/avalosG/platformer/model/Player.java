@@ -37,22 +37,22 @@ public class Player extends Sprite{
 
 
         //stand, climb, duck, jump, hurt, idle, swim, walk
-        animations.put("walk", spriteSheet.createAnimation(9,10, 0.1f));
-        animations.put("climb", spriteSheet.createAnimation(1, 2, 0.1f));
-        animations.put("duck", spriteSheet.createAnimation(3, 3, 0.1f));
-        animations.put("stand", spriteSheet.createAnimation(11, 11, 0.1f));
-        animations.put("jump", spriteSheet.createAnimation(5, 5, 0.1f));
-        animations.put("swim",spriteSheet.createAnimation(8, 8,0.1f));
-        animations.put("hurt", spriteSheet.createAnimation(4, 4, 0.1f));
-        animations.put("idle",spriteSheet.createAnimation(6, 6, 0.1f));
+        animations.put("walkRight", spriteSheet.createAnimation(9,10, 0.1f));
+        animations.put("climbRight", spriteSheet.createAnimation(1, 2, 0.1f));
+        animations.put("duckRight", spriteSheet.createAnimation(3, 3, 0.1f));
+        animations.put("standRight", spriteSheet.createAnimation(11, 11, 0.1f));
+        animations.put("jumpRight", spriteSheet.createAnimation(5, 5, 0.1f));
+        animations.put("swimRight",spriteSheet.createAnimation(8, 8,0.1f));
+        animations.put("hurtRight", spriteSheet.createAnimation(4, 4, 0.1f));
+        animations.put("idleRight",spriteSheet.createAnimation(6, 6, 0.1f));
 
 
-        animations.put("walkLeft", spriteSheet.flipAnimation(animations.get("walk"), true, false));
-        animations.put("duckLeft", spriteSheet.flipAnimation(animations.get("duck"), true, false));
-        animations.put("hurtLeft" ,spriteSheet.flipAnimation(animations.get("hurt"), true, false));
-        animations.put("idleLeft", spriteSheet.flipAnimation(animations.get("idle"), true, false));
-        animations.put("jumpLeft", spriteSheet.flipAnimation(animations.get("jump"), true, false));
-        animations.put("swimLeft", spriteSheet.flipAnimation(animations.get("swim"), true, false));
+        animations.put("walkLeft", spriteSheet.flipAnimation(animations.get("walkRight"), true, false));
+        animations.put("duckLeft", spriteSheet.flipAnimation(animations.get("duckRight"), true, false));
+        animations.put("hurtLeft" ,spriteSheet.flipAnimation(animations.get("hurtRight"), true, false));
+        animations.put("idleLeft", spriteSheet.flipAnimation(animations.get("idleRight"), true, false));
+        animations.put("jumpLeft", spriteSheet.flipAnimation(animations.get("jumpRight"), true, false));
+        animations.put("swimLeft", spriteSheet.flipAnimation(animations.get("swimRight"), true, false));
 
         currentAnimation = "walkLeft";
 
@@ -60,11 +60,12 @@ public class Player extends Sprite{
     }
 
     public void draw(Batch spriteBatch) {    // the function doesn't return anything
+
         super.draw(spriteBatch);
     }
 
 
     public void update(float deltaTime) {
-
+        super.update(deltaTime);
     }
 }

@@ -2,10 +2,12 @@ package com.avalosG.platformer.model;
 
 import com.avalosG.platformer.controller.LevelController;
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
@@ -30,9 +32,36 @@ public class Bodies {
 
             FixtureDef fixtureDefinition = new FixtureDef();
             fixtureDefinition.shape = rectangleShape;
+            fixtureDefinition.friction = 2f;
 
             physicsBody.createFixture(fixtureDefinition);
             rectangleShape.dispose();
         }
+
+        else if(bodyType.equalsIgnoreCase("ground")) {
+            PolylineMapObject polylineObject = (PolylineMapObject)mapObject;
+            BodyDef bodyDefenition = new BodyDef();
+            bodyDefenition.type = BodyDef.BodyType.StaticBody;
+            bodyDefenition.position.set(polylineObject.getPolyline().getX() * LevelController.UNIT_SCALE, polylineObject.getPolyline().getY() * LevelController.UNIT_SCALE);
+
+            Body physicsBody = LevelController.gameWorld.createBody(bodyDefenition);
+            ChainShape chainShape = new ChainShape();
+
+            float[] transformVertices= new float[polylineObject.getPolyline().getVertices().length];
+
+            for(int index = 0; index < transformVertices.length; index++) {
+                transformVertices[index] = polylineObject.getPolyline().getVertices()[index] * LevelController.UNIT_SCALE;
+            }
+
+            chainShape.createChain(transformVertices);
+
+            FixtureDef fixtureDefinition = new FixtureDef();
+            fixtureDefinition.shape = chainShape;
+            fixtureDefinition.friction = 2f;
+
+            physicsBody.createFixture(fixtureDefinition);
+            chainShape.dispose();
+        }
+        
     }
 }

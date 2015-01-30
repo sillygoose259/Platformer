@@ -59,7 +59,7 @@ public class InputController {
                 else if(keycode == Input.Keys.LEFT) {
                     PlayerController.movementAction = "";
                     }
-                
+
                 return true;
             }
 
@@ -67,7 +67,7 @@ public class InputController {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 screenY = Gdx.graphics.getHeight() - screenY;
                 for(InputControl input : inputControls) {
-                    if (input.getBoundingBox().contains(screenX, Gdx.graphics.getHeight() - screenY)) {
+                    if (input.getBoundingBox().contains(screenX, screenY)) {
                         if(input.action.equalsIgnoreCase("left")) {
                             PlayerController.movementAction = "left";
                         }
@@ -81,8 +81,8 @@ public class InputController {
             public boolean touchUp(int screenX, int screenY, int pointer, int button) {
                 screenY = Gdx.graphics.getHeight() - screenY;
                 for(InputControl input : inputControls) {
-                    if (input.getBoundingBox().contains(screenX, Gdx.graphics.getHeight() - screenY)) {
-                        if(input.action.equalsIgnoreCase("right")) {
+                    if (input.getBoundingBox().contains(screenX, screenY)) {
+                        if(input.action.equalsIgnoreCase("left")) {
                             PlayerController.movementAction = "";
                         }
                     }

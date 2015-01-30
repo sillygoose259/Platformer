@@ -16,6 +16,7 @@ public class Sprite {
     public float height;
     public Spritesheet spriteSheet;
     public String currentAnimation;
+    public String direction;
 
     protected float stateTime;
     protected HashMap<String, Animation> animations;
@@ -26,6 +27,7 @@ public class Sprite {
         spriteSheet = new Spritesheet(sheetPath, width, height);
         animations = new HashMap<String, Animation>();
         stateTime = 0f;
+        direction = "right";
     }
     public void draw(Batch spriteBatch) {    // the function doesn't return anything
         spriteBatch.draw(animations.get(currentAnimation).getKeyFrame(stateTime ,true), position.x, position.y,width , height);

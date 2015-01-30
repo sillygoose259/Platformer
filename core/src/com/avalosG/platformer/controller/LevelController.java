@@ -49,7 +49,7 @@ public class LevelController {
         spriteBatch.setProjectionMatrix(CameraController.inputCamera.combined);
         InputController.draw(spriteBatch);
 
-        debugRenderer.render(gameWorld, CameraController.camera.combined); // display the shapes to the exact size it needs to be
+        // debugRenderer.render(gameWorld, CameraController.camera.combined); // display the shapes to the exact size it needs to be
 
 
 
