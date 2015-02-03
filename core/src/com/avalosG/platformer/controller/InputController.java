@@ -31,7 +31,7 @@ public class InputController {
 
     public static void draw(Batch spriteBatch) {
         spriteBatch.begin();
-        for(InputControl inputControl : inputControls) {
+        for (InputControl inputControl : inputControls) {
             inputControl.draw(spriteBatch);
         }
         spriteBatch.end();
@@ -41,11 +41,9 @@ public class InputController {
         return new InputAdapter() {
             @Override
             public boolean keyDown(int keycode) {
-                if(keycode == Input.Keys.RIGHT) {
+                if (keycode == Input.Keys.RIGHT) {
                     PlayerController.movementAction = "right";
-                }
-
-                else if(keycode == Input.Keys.LEFT) {
+                } else if (keycode == Input.Keys.LEFT) {
                     PlayerController.movementAction = "left";
                 }
                 return true;
@@ -53,12 +51,11 @@ public class InputController {
 
             @Override
             public boolean keyUp(int keycode) {
-                if(keycode == Input.Keys.RIGHT) {
+                if (keycode == Input.Keys.RIGHT) {
+                    PlayerController.movementAction = "";
+                } else if (keycode == Input.Keys.LEFT) {
                     PlayerController.movementAction = "";
                 }
-                else if(keycode == Input.Keys.LEFT) {
-                    PlayerController.movementAction = "";
-                    }
 
                 return true;
             }
@@ -66,10 +63,12 @@ public class InputController {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 screenY = Gdx.graphics.getHeight() - screenY;
-                for(InputControl input : inputControls) {
+                for (InputControl input : inputControls) {
                     if (input.getBoundingBox().contains(screenX, screenY)) {
-                        if(input.action.equalsIgnoreCase("left")) {
+                        if (input.action.equalsIgnoreCase("left")) {
                             PlayerController.movementAction = "left";
+                        } else if (input.action.equalsIgnoreCase("right")) {
+                            PlayerController.movementAction = "right";
                         }
                     }
                 }
@@ -80,16 +79,24 @@ public class InputController {
             @Override
             public boolean touchUp(int screenX, int screenY, int pointer, int button) {
                 screenY = Gdx.graphics.getHeight() - screenY;
-                for(InputControl input : inputControls) {
+                for (InputControl input : inputControls) {
                     if (input.getBoundingBox().contains(screenX, screenY)) {
-                        if(input.action.equalsIgnoreCase("left")) {
+                        if (input.action.equalsIgnoreCase("left")) {
+                            PlayerController.movementAction = "";
+                        } else if (input.action.equalsIgnoreCase("right")) {
                             PlayerController.movementAction = "";
                         }
+
                     }
                 }
-                return true;
-            }
+                    return true;
+                }
+
+
+
+
         };
+
     }
 }
 
