@@ -29,11 +29,21 @@ public class Player extends Sprite{
         PolygonShape rectangleShape =  new PolygonShape();
         rectangleShape.setAsBox(this.width / 2f, this.height / 2f, new Vector2(this.width/ 2f, this.height /2f), 0f); // setting the height and width of the box
 
+        PolygonShape sensorShape = new PolygonShape();
+            sensorShape.setAsBox(this.width / 2.5f, this.height / 32, new Vector2(this.width / 2, 0), 0f);
+
         FixtureDef fixtureDefinition = new FixtureDef(); // creating the properties of our fixture
         fixtureDefinition.shape = rectangleShape; // shapeing the fixture
 
+        FixtureDef fixtureDefinitionSensor = new FixtureDef();
+        fixtureDefinitionSensor.shape = sensorShape;
+        fixtureDefinitionSensor.isSensor = true;
+
+
         physicsBody.createFixture(fixtureDefinition); // applying the fixture to our player body
+        physicsBody.createFixture(fixtureDefinitionSensor);
         rectangleShape.dispose(); // removeing the origional rectangleShape
+        sensorShape.dispose();
 
 
         //stand, climb, duck, jump, hurt, idle, swim, walk

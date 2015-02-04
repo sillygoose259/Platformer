@@ -1,6 +1,7 @@
 package com.avalosG.platformer.controller;
 
 import com.avalosG.platformer.model.Bodies;
+import com.avalosG.platformer.model.CollisionListener;
 import com.avalosG.platformer.model.Level;
 import com.avalosG.platformer.model.Player;
 import com.avalosG.platformer.model.Sprite;
@@ -32,6 +33,7 @@ public class LevelController {
         renderer = new OrthogonalTiledMapRenderer(level.map, UNIT_SCALE);  // this states that the tiles are 70px large
 
         gameWorld = new World(new Vector2(0, -10), true); // the gravity for our player that makes it fall down based on earth's gravity
+        gameWorld .setContactListener(new CollisionListener());
         worldBodies = new Array<Body>();
         debugRenderer = new Box2DDebugRenderer();
 

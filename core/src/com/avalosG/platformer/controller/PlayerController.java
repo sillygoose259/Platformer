@@ -67,12 +67,7 @@ public class PlayerController {
         else {
             playerState = State.Idle;
         }
-        if(Math.abs(velocity.y) > 0) {
-            playerState = State.Walk;
-        }
-        else {
-            playerState = State.Idle;
-        }
+
 
         setCurrentAnimation();
     }
@@ -102,5 +97,7 @@ public class PlayerController {
         else if(playerState == State.Idle) {
             player.currentAnimation = "idleLeft";
         }
+
+        
     }
 }
