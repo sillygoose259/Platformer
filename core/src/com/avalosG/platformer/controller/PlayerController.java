@@ -61,6 +61,10 @@ public class PlayerController {
             player.physicsBody.applyLinearImpulse(-VELOCITY, 0f, position.x, position.y, true);
             player.direction = "left";
         }
+        else if(specialAction.equalsIgnoreCase("jump")) {
+                player.physicsBody.applyLinearImpulse(-VELOCITY, 0f, position.x, position.y, true);
+                player.direction = "jump";
+        }
         if(Math.abs(velocity.x) > 0) {
             playerState = State.Walk;
         }
@@ -98,6 +102,6 @@ public class PlayerController {
             player.currentAnimation = "idleLeft";
         }
 
-        
+
     }
 }
