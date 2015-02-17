@@ -16,6 +16,7 @@ public class InputController {
     private static InputControl left;
     private static InputControl right;
     private static InputControl jump;
+    private static InputControl duck;
 
 
     public static void initializeController() {
@@ -24,9 +25,11 @@ public class InputController {
         left = new InputControl(new Vector2(0, 0), spriteSheet.spriteFrames[0], "left");
         right = new InputControl(new Vector2(2.5f, 0), spriteSheet.spriteFrames[1], "right");
         jump = new InputControl(new Vector2(1.25f, 0), spriteSheet.spriteFrames[2], "jump");
+        duck = new InputControl(new Vector2(3.25f, 0), spriteSheet.spriteFrames[3], "duck");
         inputControls.add(left); // creating an array where we can store our input controls
         inputControls.add(right);
         inputControls.add(jump);
+        inputControls.add(duck);
         Gdx.input.setInputProcessor(createInputAdapter());
 
     }
@@ -52,6 +55,9 @@ public class InputController {
                 else if (keycode == Input.Keys.UP) {
                     PlayerController.specialAction = "jump";
                 }
+                else if (keycode == Input.Keys.DOWN) {
+                    PlayerController.movementAction = "duck";
+                }
                 return true;
             }
 
@@ -64,6 +70,9 @@ public class InputController {
                 }
                 else if(keycode == Input.Keys.UP) {
                     PlayerController.specialAction = "";
+                }
+                else if(keycode == Input.Keys.DOWN) {
+                    PlayerController.movementAction = "";
                 }
 
                 return true;
@@ -81,6 +90,9 @@ public class InputController {
                         }
                           else if(input.action.equalsIgnoreCase("jump")) {
                             PlayerController.specialAction = "jump";
+                        }
+                        else if(input.action.equalsIgnoreCase("duck")) {
+                            PlayerController.movementAction = "duck";
                         }
                     }
                 }
@@ -100,6 +112,9 @@ public class InputController {
                         }
                           else if(input.action.equalsIgnoreCase("jump")) {
                             PlayerController.specialAction = "";
+                        }
+                          else if(input.action.equalsIgnoreCase("duck")) {
+                            PlayerController.movementAction = "";
                         }
 
                     }

@@ -11,6 +11,7 @@ public class PlayerController {
     public static Player player;
 
     private static final float VELOCITY = 1f;
+
     private static final float MAX_VELOCITY = 5f;
     public static String movementAction;
     public static String specialAction;
@@ -61,15 +62,18 @@ public class PlayerController {
             player.physicsBody.applyLinearImpulse(-VELOCITY, 0f, position.x, position.y, true);
             player.direction = "left";
         }
-        else if(specialAction.equalsIgnoreCase("jump")) {
-                player.physicsBody.applyLinearImpulse(-VELOCITY, 0f, position.x, position.y, true);
-                player.direction = "jump";
+
+        if(specialAction.equalsIgnoreCase("jump")) {
+                player.physicsBody.applyLinearImpulse(0f, VELOCITY, position.x, position.y, true);
         }
+
         if(Math.abs(velocity.x) > 0) {
-            playerState = State.Walk;
-        }
+            playerState = State.Walk;        }
         else {
             playerState = State.Idle;
+        }
+        if(Math.abs(velocity.y) > 0) {
+            playerState = State.Jump;
         }
 
 

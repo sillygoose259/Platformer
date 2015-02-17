@@ -64,7 +64,7 @@ public class Player extends Sprite{
         animations.put("jumpLeft", spriteSheet.flipAnimation(animations.get("jumpRight"), true, false));
         animations.put("swimLeft", spriteSheet.flipAnimation(animations.get("swimRight"), true, false));
 
-        currentAnimation = "walkLeft";
+        currentAnimation = "duckRight";
 
 
     }
