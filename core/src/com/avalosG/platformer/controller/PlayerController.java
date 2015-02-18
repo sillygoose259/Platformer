@@ -68,7 +68,11 @@ public class PlayerController {
         }
 
         if(Math.abs(velocity.x) > 0) {
-            playerState = State.Walk;        }
+            playerState = State.Walk;
+        }
+        else if(movementAction.equalsIgnoreCase("duck")){
+            player.direction = "duck";
+        }
         else {
             playerState = State.Idle;
         }
@@ -96,6 +100,12 @@ public class PlayerController {
         else if(playerState == State.Idle) {
             player.currentAnimation = "idleLeft";
         }
+        else if(playerState == State.Duck) {
+            player.currentAnimation = "duckLeft";
+        }
+        else if(playerState == State.Jump) {
+            player.currentAnimation = "jumpLeft";
+        }
     }
 
     private static void setLeftAnimation() {
@@ -103,7 +113,13 @@ public class PlayerController {
             player.currentAnimation = "walkRight";
         }
         else if(playerState == State.Idle) {
-            player.currentAnimation = "idleLeft";
+            player.currentAnimation = "idleRight";
+        }
+        else if(playerState == State.Duck){
+            player.currentAnimation = "duckRight";
+        }
+        else if(playerState == State.Jump) {
+            player.currentAnimation = "jumpRight";
         }
 
 
