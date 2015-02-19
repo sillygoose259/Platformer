@@ -66,6 +66,9 @@ public class PlayerController {
         if(specialAction.equalsIgnoreCase("jump")) {
                 player.physicsBody.applyLinearImpulse(0f, VELOCITY, position.x, position.y, true);
         }
+        if(movementAction.equalsIgnoreCase("duck")) {
+            playerState = State.Duck;
+        }
 
         if(Math.abs(velocity.x) > 0) {
             playerState = State.Walk;
